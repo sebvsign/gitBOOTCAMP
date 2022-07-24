@@ -39,7 +39,7 @@ def venta_view(request):
         form = VentaForm(request.POST)
         if form.is_valid():
             form.save()
-        return redirect('core:venta')
+        return redirect('ventas')
     else:
         form = VentaForm()
     return render(request, 'core/ventas/ventas.html', {'form':form})

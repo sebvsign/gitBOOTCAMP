@@ -15,7 +15,7 @@ urlpatterns = [
     path('listar/', listarClientes, name="listarClientes"),
 
 
-    path('listar-ventas/', listarVentas, name="listarVentas"),
+    path('listar_ventas/', listarVentas, name="listarVentas"),
 
     path('ventas/', venta_view, name="ventas"),
 
