@@ -36,7 +36,7 @@ class Vehiculo(models.Model):
 class Vendedores(models.Model):
     rutVendedor = models.CharField(max_length=10,primary_key=True,null=False, unique= True ,verbose_name='rut_vededor')
     nombreVendedor = models.CharField(max_length=50,verbose_name="Nombre del vendedor")
-    cantidadventa = models.IntegerField(null=True, verbose_name='cantidad venta')
+    cantidadventa = models.IntegerField(null=True, verbose_name='cantidad venta', default=0)
     username = models.CharField(max_length=50,verbose_name="username",null=True, blank=True )
     password1 = models.CharField(max_length=50,verbose_name='password', null=True, blank=True )
     def __str__(self):

@@ -65,6 +65,12 @@
           <li class="nav-item">
             <a class="nav-link" href="{% url 'clientes' %}">LISTA CLIENTES</a>
           </li>
+
+          <li class="nav-item">
+             
+            <a class="nav-link" href="#">@ {{ request.session.username }}</a>
+             
+          </li>
           
           &nbsp;&nbsp;<a class="nav-link" href="{% url 'cerrarSesion' %}">CERRAR SESION</a>
           {% else %}

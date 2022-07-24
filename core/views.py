@@ -1,3 +1,4 @@
+from django.http import QueryDict
 from django.shortcuts import get_object_or_404, redirect, render
 from matplotlib.style import context
 from requests import request
@@ -33,23 +34,34 @@ def galeria(request):
     }
     return render(request, 'core/galeria.html', data)
 
-
-def venta_view(request):
+ 
+def venta_view(request): 
+    vendedores = get_object_or_404(Vendedores, username=request.session['username'])
+    venta = Ventas(vendedor_id= vendedores.rutVendedor )
     if request.method == 'POST':
         form = VentaForm(request.POST)
+
+        rutVendedor=request.POST['vendedor']
+        vendedor = get_object_or_404(Vendedores, rutVendedor=rutVendedor)
         if form.is_valid():
-            form.save()
+
+            vendedor.cantidadventa=vendedor.cantidadventa+1
+            vendedor.save()
+            form.save() 
         return redirect('ventas')
     else:
         form = VentaForm()
-    return render(request, 'core/ventas/ventas.html', {'form':form})
-
+    return render(request, 'core/ventas/ventas.html',  {'form':VentaForm(instance=venta)})
 
 
 def listarVentas(request):
+  
+
     ventas = Ventas.objects.all()
+    vendedor = Vendedores.objects.all()
     data = {
-        'ventas':ventas
+        'ventas':ventas,
+        'vendedor':vendedor
     }
     return render(request, 'core/ventas/listar_ventas.html', data)
 
@@ -59,10 +71,6 @@ def listarClientes(request):
         'clientes':clientes
     }
     return render(request, 'core/clientes/listar.html', data)
-
-
-
-
 
 
 
@@ -105,6 +113,10 @@ def eliminarCliente(request,id):
     cliente.delete()
 
     return redirect(to="clientes")
+
+##
+
+
 
 
 

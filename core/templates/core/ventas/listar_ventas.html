@@ -52,6 +52,24 @@ href="https://use.fontawesome.com/releases/v5.0.8/css/solid.css">
             <div class="card">
                 <div class="card-header">
                     <h4>Venta</h4>
+                    {% if request.session.username %}
+                    <p class="small text-muted mb-0">CUENTA: {{request.session.username}}</p>
+                    {% for ven in vendedor %}
+                    {% if ven.cantidadventa == None %}
+                    <a > Cantidad de venta del vendedor {{ven.username}} → No hay venta</a>
+                    {% else %}
+                    {% if ven.cantidadventa >= 1 %}
+                    <a class="small text-muted mb-0"> Cantidad de venta del vendedor " {{ven.username}} " : {{ven.cantidadventa}} | </a>
+                    {% endif %}
+                    {% endif %}
+                    
+                    
+                    
+                    {% endfor %}
+                    {% endif %}
+
+
+                    <h2></h2>
                 </div>
                 
                 <div class="card-body">
@@ -77,6 +95,7 @@ href="https://use.fontawesome.com/releases/v5.0.8/css/solid.css">
                             </tbody>
                         </table>
                     </div>
+
 
                 </div>
             </div>

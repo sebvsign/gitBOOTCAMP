@@ -4,7 +4,11 @@ from django.forms import widgets
 from .models import *
  
 
+
+
 class VentaForm(forms.ModelForm):
+
+    
 
     class Meta:
         model = Ventas
@@ -15,8 +19,18 @@ class VentaForm(forms.ModelForm):
             'vehiculo': 'vehiculo',
             'vendedor': 'vendedor',
         }
+        
+        
         widgets = {
+            
             'cliente': forms.Select(attrs={'Class':'formulario__input'}),
+
             'vehiculo': forms.Select(attrs={'Class':'formulario__input'}),
-            'vendedor': forms.Select(attrs={'Class':'formulario__input'}),            
+
+            'vendedor': forms.TextInput(
+                attrs={
+                    'Class':'formulario__input',
+                    }
+                ),            
+
         }
