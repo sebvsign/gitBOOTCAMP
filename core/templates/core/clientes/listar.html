@@ -1,0 +1,70 @@
+{% extends 'core/base.html '%}
+
+{% load static %}
+	
+ 
+{% block css %}
+ 
+<link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<link rel="stylesheet" href="{% static 'core/css/style.css' %}">
+
+{% endblock %}
+
+{% block minjs %}
+<script src="{% static 'core/js/jquery.min.js' %}"></script>
+<script src="{% static 'core/js/popper.js' %}"></script>
+<script src="{% static 'core/js/bootstrap.min.js' %}"></script>
+<script src="{% static 'core/js/main.js' %}"></script>
+<script src="{% static 'core/js/contraseña.js' %}"></script>
+
+
+{% endblock%}
+
+
+
+{% block contenido %}
+	<section class="ftco-section">
+		<div class="container">
+			<div class="row justify-content-center">
+				<div class="col-md-6 text-center mb-5">
+					<h2 class="heading-section">Table #02</h2>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<div class="table-wrap">
+						<table class="table">
+						  <thead class="thead-dark">
+						    <tr>
+						      <th>ID no.</th>
+						      <th>RUT</th>
+						      <th>NOMBRE</th>
+						      <th>&nbsp;</th>
+						    </tr>
+						  </thead>
+						  <tbody>
+						    <tr class="alert" role="alert">
+							{% for c in clientes %}
+						      <th scope="row">001</th>
+						      <td>{{ c.rutCliente }}</td>
+						      <td>{{ c.nombreCliente }}</td>
+							{% endfor %}
+						      <td>
+						      	<a href="#" class="close" data-dismiss="alert" aria-label="Close">
+				            	<span aria-hidden="true"><i class="fa fa-close"></i></span>
+				          	</a>
+				        	</td>
+							
+						    </tr>
+						  </tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+{% endblock %}
+

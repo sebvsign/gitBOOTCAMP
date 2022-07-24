@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<title>VENTA AUTO</title>
+
+	{%load static%}
+
+    <meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+
+	<!--- footer-->
+	<link rel="stylesheet" href="https://code.jquery.com/jquery-3.4.1.slim.js">
+
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.js">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.js">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.css">
+
+	
+	<!-- end footer-->
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{% static 'core/css/footer.css' %}">
+	{% block css %}
+
+	{% endblock %}
+
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"></script>
+	{% block minjs %}
+
+	{% endblock%}
+
+
+</head>
+<body>
+ <!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
+  <div class="container">
+    <a class="navbar-brand" href="{% url 'home' %}">
+      <img src="https://placeholder.pics/svg/150x50/888888/EEE/VENTAUTO" alt="..." height="36">
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ms-auto">
+
+        <li class="nav-item" >
+          {% if request.session.username %}
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'sucursal' %}">SUCURSALES</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'galeria' %}">AUTOS</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'listarClientes' %}">CLIENTES</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'ventas' %}">VENDER</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'clientes' %}">LISTA CLIENTES</a>
+          </li>
+          
+          &nbsp;&nbsp;<a class="nav-link" href="{% url 'cerrarSesion' %}">CERRAR SESION</a>
+          {% else %}
+            
+          
+          <a class="nav-link active" aria-current="page" href="{% url 'login' %}">LOGIN</a>
+          {% endif %}
+          
+        </li>
+      </ul>
+    </div>
+
+
+
+  </div>
+</nav>
+
+<!-- Page Content -->
+<div class="container">
+  <h1 class="mt-4">Logo Nav by Start Bootstrap</h1>
+  <p>The logo in the navbar is now a default Bootstrap feature in Bootstrap! Make sure to set the height
+    of the logo within the HTML or using CSS. For best results, use an SVG image as your logo.</p>
+</div>
+
+
+
+	{% block contenido %}
+
+	{% endblock %}
+
+    <div class="footer-dark">
+        <footer>
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-6 col-md-3 item">
+                        <h3>Services</h3>
+                        <ul>
+                            <li><a href="#">Web design</a></li>
+                            <li><a href="#">Development</a></li>
+                            <li><a href="#">Hosting</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-sm-6 col-md-3 item">
+                        <h3>About</h3>
+                        <ul>
+                            <li><a href="#">Company</a></li>
+                            <li><a href="#">Team</a></li>
+                            <li><a href="#">Careers</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-md-6 item text">
+                        <h3>Company Name</h3>
+                        <p>Praesent sed lobortis mi. Suspendisse vel placerat ligula. Vivamus ac sem lacus. Ut vehicula rhoncus elementum. Etiam quis tristique lectus. Aliquam in arcu eget velit pulvinar dictum vel in justo.</p>
+                    </div>
+                    <div class="col item social"><a href="#"><i class="icon ion-social-facebook"></i></a><a href="#"><i class="icon ion-social-twitter"></i></a><a href="#"><i class="icon ion-social-snapchat"></i></a><a href="#"><i class="icon ion-social-instagram"></i></a></div>
+                </div>
+                <p class="copyright">Company Name © 2018</p>
+            </div>
+        </footer>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.bundle.min.js"></script>
+
+  {% block javascript %}
+
+  {% endblock %}
+ 
+</body>
+</html>

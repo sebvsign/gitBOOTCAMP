@@ -1,0 +1,92 @@
+{% extends 'core/base.html '%}
+
+{% load static %}
+
+{% block css %}
+<link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<link rel="stylesheet" href="{% static 'core/css/style.css' %}">
+{% endblock %}
+
+{% block minjs %}
+<script src="{% static 'core/js/jquery.min.js' %}"></script>
+<script src="{% static 'core/js/popper.js' %}"></script>
+<script src="{% static 'core/js/bootstrap.min.js' %}"></script>
+<script src="{% static 'core/js/main.js' %}"></script>
+<script src="{% static 'core/js/validar.js' %}"></script>
+<script src="{% static 'core/js/contraseña.js' %}"></script>
+
+{% endblock%}
+
+
+
+{% block contenido %}
+<section class="ftco-section">
+    <div class="container3">
+        <div class="row justify-content-center">
+            <div class="col-md-7 col-lg-5">
+                <div class="wrap">
+                    <div class="img col-xl-9">
+                        <img class="img col-xl-9 center " src="{% static 'core/img/paisa.jpg' %}" alt="">
+                    </div>
+                    <div class="login-wrap p-4 p-md-5">
+                <div class="d-flex">
+                    <div class="w-100">
+                        <h3 class="mb-4">Sign Up</h3>
+                    </div>
+                </div>
+                
+                <form method="post">
+                    {% csrf_token %}
+                    <div class="form-group mt-3">
+                        <input class="form-control" type="text" name="rutVendedor" oninput="checkRut(this)" maxlength="10" required>
+                        <label class="form-control-placeholder" for="rutVendedor"> Rut Vendedor ej: 11111111-1</label> 
+                        <p class="text-info" id="msgerror"></p>
+                    </div>
+                <div class="form-group">
+                <input type="text" name="nombreVendedor" class="form-control" required maxlength="30">
+                <label class="form-control-placeholder" for="nombreVendedor">Nombre Vendedor</label>
+                </div>  
+                    <div class="form-group">
+                        <input type="text" name="username" class="form-control" required maxlength="20">
+                        <label class="form-control-placeholder" name="username" for="username">Username</label>
+                    </div>
+                <div class="form-group">
+                <input id="contrasena" type="password" name="password1" class="form-control" id="password1" required>
+                <label class="form-control-placeholder" name="password1" for="password1">Password</label>
+                </div>
+                <div class="form-group">
+                    <div class="mb-3">
+                        <input type="checkbox" id="mostrar_contrasena" title="clic para mostrar contraseña"/>
+                        &nbsp;&nbsp;Mostrar Contraseña</div>
+                    <button type="submit" class="form-control btn btn-primary rounded submit px-3">Registrar</button>
+                </div>
+                <div class="form-group d-md-flex">
+                    <div class="w-50 text-left">
+                    </div>
+                        <div class="w-50 text-md-right">
+
+                        </div>
+                </div>
+            </form>
+            </div>
+        </div>
+            </div>
+        </div>
+        
+    </div>
+    {% if messages %}
+        {% for msg in messages %}
+        <b>{{msg}}</b>
+        {% endfor %}
+    {% endif %}
+    
+</section>
+
+
+{% endblock %}
+
+
+ 

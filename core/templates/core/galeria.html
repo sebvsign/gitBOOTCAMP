@@ -1,0 +1,102 @@
+{% extends 'core/base.html '%}
+
+{% load static %}
+	
+
+{% block css %}
+
+<!-- FRAMEWORK BOOTSTRAP galeria-->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+{% endblock %}
+
+{% block minjs %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.bundle.min.js">
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script>
+  // Create a lightbox
+(function() {
+  var $lightbox = $("<div class='lightbox'></div>");
+  var $img = $("<img>");
+  var $caption = $("<p class='caption'></p>");
+
+  // Add image and caption to lightbox
+
+  $lightbox
+    .append($img)
+    .append($caption);
+
+  // Add lighbox to document
+
+  $('body').append($lightbox);
+
+  $('.lightbox-gallery img').click(function(e) {
+    e.preventDefault();
+
+  // Get image link and description
+      var src = $(this).attr("data-image-hd");
+      var cap = $(this).attr("alt");
+
+  // Add data to lighbox
+
+     $img.attr('src', src);
+      caption.text(cap);
+
+  // Show lightbox
+
+    $lightbox.fadeIn('fast');
+
+    $lightbox.click(function() {
+      $lightbox.fadeOut('fast');
+    });
+  });
+
+}());
+</script>
+{% endblock%}
+
+
+
+{% block contenido %}
+<div class="container-fluid">
+    <div class="px-lg-5">
+  
+      <!-- For demo purpose -->
+      <div class="row py-5">
+        <div class="col-lg-12 mx-auto">
+          <div class="banner">
+            <h1 class="display-4">Galeria de autos</h1>
+          </div>
+        </div>
+      </div>
+      <!-- End -->
+  
+      <div class="row">
+
+        {% for v in vehiculos %}
+        <!-- Gallery item -->
+        <div class="col-xl-3 col-lg-4 col-md-6 mb-4">
+          <div class="bg-white rounded shadow-sm">
+            {% if v.imagen %}
+            <img src="{{ v.imagen.url}}" alt="" class="img-fluid card-img-top">
+            {% endif%}
+            <div class="p-4">
+              <h5> <a href="#" class="text-dark">{{ v.marca }} {{v.modelo}}</a> </h5>
+              <p class="small text-muted mb-0">Lorem ipsum dolor sit amet, consectetur adipisicing elit</p>
+              <div class="d-flex align-items-center justify-content-between rounded-pill bg-light px-3 py-2 mt-4">
+                <p class="small mb-0"><i class="fa fa-picture-o mr-2"></i><span class="font-weight-bold">JPG</span></p>
+                <div class="badge badge-danger px-3 rounded-pill font-weight-normal">New</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+        <!-- End -->
+        
+      </div>
+      <div class="py-5 text-right"><a href="#" class="btn btn-dark px-5 py-3 text-uppercase">Show me more</a></div>
+    </div>
+  </div>
+{% endblock %}

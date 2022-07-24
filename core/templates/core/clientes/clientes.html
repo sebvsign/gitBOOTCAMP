@@ -1,0 +1,131 @@
+{% extends 'core/base.html '%}
+
+{% load static %}
+
+{% block css %}
+<link rel="stylesheet"
+href="https://use.fontawesome.com/releases/v5.0.8/css/solid.css">
+<script src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.1/css/bootstrap.css"> 
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">
+
+
+
+{% endblock %}
+
+{% block minjs %}
+<!-- DATA TABLE -->
+<script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
+<script src="{% static 'core/js/validar.js' %}"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        //Asegurate que el id que le diste a la tabla sea igual al texto despues del simbolo #
+        $('#userList').DataTable();
+    } );
+</script>
+{% endblock%}
+
+
+{% block contenido %}
+<section class="mb-5">
+
+</section>
+<div class="mx-auto col-sm-8 main-section" id="myTab" role="tablist">
+    <ul class="nav nav-tabs justify-content-end">
+        <li class="nav-item">
+        <a class="nav-link active" id="list-tab" data-toggle="tab" href="#list" role="tab" aria-controls="list" aria-selected="false">Listado</a>
+        </li>
+
+
+
+        <li class="nav-item">
+        <a class="nav-link" id="form-tab" data-toggle="tab" href="#form" role="tab" aria-controls="form" aria-selected="true">Registrar Cliente</a>				   	
+        </li>
+
+    </ul>
+
+
+
+    <div class="tab-content" id="myTabContent">
+        <div class="tab-pane fade show active" id="list" role="tabpanel" aria-labelledby="list-tab">
+            <div class="card">
+                <div class="card-header">
+                    <h4>Clientes</h4>
+                </div>
+                
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table id="userList" class="table table-bordered table-hover table-striped">
+                            <thead class="thead-light">
+                            <tr>
+                                <th scope="col">Rut Cliente</th>
+                                <th scope="col">Nombre Cliente</th>
+                                <th>accion</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for cli in clientes %}
+                                <tr>
+                                <td>{{ cli.rutCliente }}</td>
+                                <td>{{ cli.nombreCliente }}</td>
+                                <td>
+                                    <a href="{% url 'modificarCliente' cli.rutCliente %}"><i class="fas fa-edit"></i></a> | <a href="{% url 'eliminarCliente' cli.rutCliente %}"><i class="fas fa-user-times"></i></a>
+                                </td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
+
+        <!-- registrar cliente -->
+        <div class="tab-pane fade" id="form" role="tabpanel" aria-labelledby="form-tab">
+            <div class="card">
+                <div class="card-header">
+                    <h4>Registrar CLIENTE</h4>
+                </div>
+                <div class="card-body">
+                    <form method="post" class="form" role="form" autocomplete="off">
+                        {% csrf_token %}
+                        <div class="form-group row">
+                            <label class="col-lg-3 col-form-label form-control-label">Nombre Cliente</label>
+                            <div class="col-lg-9">
+                                <input name="nombreCliente" class="form-control" type="text" >
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-lg-3 col-form-label form-control-label">Rut Cliente ej: 11111111-1</label>
+                            <div class="col-lg-9">
+                                <input class="form-control" type="text" name="rutCliente" oninput="checkRut(this)" maxlength="10" required>
+                            </div>
+                        </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-lg-12 text-center">
+                                <input type="reset" class="btn btn-secondary" value="Cancel">
+                                <button type="submit" class="btn btn-primary" class="form-control btn btn-primary rounded submit px-3">Guardar</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <!-- end registrar-->
+
+
+            
+
+        </div>
+    </div>
+</div>
+<section class="mb-4"><a href="">.</a></section>
+<section class="mb-5"><a href="">.</a></section>
+<section class="mb-5"><a href="">.</a></section>
+    
+</section>
+{% endblock %}
